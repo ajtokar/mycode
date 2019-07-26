@@ -1,0 +1,10 @@
+---
+- name: Push a script and run it
+  hosts: localhost
+
+  tasks:
+    - script: /home/student/mycode/pyscript/pyhello02.py
+      args:
+        executable: python3
+        creates: /home/student/mycode/pyscript/stopper.txt
+      register: results
