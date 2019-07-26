@@ -1,0 +1,12 @@
+---                                                                                                                                                                                            
+- name: Using your new module                                                                                                                                                                  
+  hosts: localhost                                                                                                                                                                             
+                                                                                                                                                                                               
+  tasks:                                                                                                                                                                                       
+    - name: New module                                                                                                                                                                         
+      my_new_test_module:                                                                                                                                                                      
+        name: simpson
+      register: results                                                                                                                                                                        
+                                                                                                                                                                                               
+    - debug:                                                                                                                                                                                   
+        var: results.message 

@@ -58,6 +58,7 @@ message:
     description: The output message that the sample module generates
 '''
 
+import requests
 from ansible.module_utils.basic import AnsibleModule
 
 def run_module():
@@ -91,6 +92,12 @@ def run_module():
 
     if module.params['name'] == 'fail me':
         module.fail_json(msg='You requested this to fail', **result)
+
+    if module.params['name'] == 'simpson':
+        simpson = requests.get("https://thesimpsonsquoteapi.glitch.me/quotes").json()
+        with open("simpsons-test.txt", "a+") as monorail:
+            monorail.write(simpson[0]["quote"] + "\n" + simpson[0]["character"] + "\n\n")
+        result['message'] = "d'oh!"
 
     module.exit_json(**result)
 
